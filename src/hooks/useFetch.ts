@@ -13,20 +13,25 @@ export interface itemData {
 
 export const useFetch = () =>  {
   const [items, setItems] = useState<itemData[]>()
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<any>()
 
   useEffect(() => {
     const fetchItems = async () => {
-        const { data, error } = await supabase
-          .from("items")
-          .select()
-        
-        if(data){
-          setItems(data)
-          setError(null)
-        }
-      }  
-    fetchItems()
+      const { data, error } = await supabase
+        .from("shopitems")
+        .select()
+      
+      if(data){      
+        setItems(data)  
+        setError(null)
+      }
+      if(error){
+        setError(error)
+        console.log(error);  
+      }
+    }
+      fetchItems() 
   }, [])
+  
   return { items }
 }
