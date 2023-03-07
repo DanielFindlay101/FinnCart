@@ -8,7 +8,8 @@ export interface itemData {
   price: number,
   gender: string,
   size: number | string,
-  inStock: boolean
+  inStock: boolean,
+  imageURL: string
 }
 
 export const useFetch = () =>  {
