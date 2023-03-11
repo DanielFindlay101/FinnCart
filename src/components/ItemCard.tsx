@@ -8,7 +8,7 @@ interface ItemCardProps {
 }
 
 const ItemCard = ({ item }: ItemCardProps) => {
-  const increaseItems = useFinnStore((state) => state.increaseItems);
+  const increaseItems = useFinnStore((state) => state.increaseCartItems);
   const [quantity, setQuantity] = useState(1);
 
   return (

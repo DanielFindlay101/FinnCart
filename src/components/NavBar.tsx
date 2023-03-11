@@ -4,7 +4,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { useFinnStore } from "../useFinnStore";
 
 const NavBar = () => {
-  const checkoutItems = useFinnStore((state) => state.checkoutItems);
+  const cartItems = useFinnStore((state) => state.cartItems);
   const cartSidebar = useFinnStore((state) => state.cartSidebar);
   const openCartSidebar = useFinnStore((state) => state.openCartSidebar);
 
@@ -24,9 +24,9 @@ const NavBar = () => {
           className="h-6 w-6 text-white cursor-pointer"
           onClick={() => openCartSidebar(!cartSidebar)}
         />
-        {checkoutItems != 0 && (
+        {cartItems != 0 && (
           <span className="bg-red-500 rounded-full h-6 w-6 absolute top-[10px] right-[20px] md:right-[34px] text-white text-center">
-            {checkoutItems}
+            {cartItems}
           </span>
         )}
       </div>
