@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { itemData } from "../hooks/useFetch";
 import { useFinnStore } from "../useFinnStore";
 
@@ -8,6 +8,7 @@ interface ItemCardProps {
 
 export default function ItemCard({ item }: ItemCardProps) {
   const increaseItems = useFinnStore((state) => state.increaseItems);
+  const [quantity, setQuantity] = useState(0);
 
   return (
     <div className="w-96 bg-slate-200 rounded-lg">
@@ -37,12 +38,29 @@ export default function ItemCard({ item }: ItemCardProps) {
         <button className="bg-violet-700 text-white px-4 py-2 rounded-3xl">
           Buy Now
         </button>
-        <button
-          className="border-2 border-slate-400 px-4 py-2 rounded-3xl"
-          onClick={() => increaseItems(1)}
-        >
-          Add to cart
-        </button>
+        <div className="flex justify-evenly gap-[5px]">
+          <button
+            className="border-2 border-slate-400 px-4 py-2 rounded-3xl"
+            onClick={() => increaseItems(quantity)}
+          >
+            Add to cart
+          </button>
+          <div className="flex flex-col">
+            <label htmlFor="QTY">QTY</label>
+            <select
+              name="QTY"
+              id="QTY"
+              className="rounded-md"
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   );
