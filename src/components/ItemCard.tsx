@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { itemData } from "../hooks/useFetch";
 import { useFinnStore } from "../useFinnStore";
+import { Link } from "react-router-dom";
 
 interface ItemCardProps {
   item: itemData;
 }
 
-export default function ItemCard({ item }: ItemCardProps) {
+const ItemCard = ({ item }: ItemCardProps) => {
   const increaseItems = useFinnStore((state) => state.increaseItems);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="w-96 bg-slate-200 rounded-lg">
@@ -35,9 +36,11 @@ export default function ItemCard({ item }: ItemCardProps) {
         <img className="w-3/4 h-[200px] pb-3 rounded-md" src={item.imageURL} />
       </div>
       <div className="flex justify-around pb-3">
-        <button className="bg-violet-700 text-white px-4 py-2 rounded-3xl">
-          Buy Now
-        </button>
+        <Link to="/checkout">
+          <button className="bg-violet-700 text-white px-4 py-2 rounded-3xl">
+            Buy Now
+          </button>
+        </Link>
         <div className="flex justify-evenly gap-[5px]">
           <button
             className="border-2 border-slate-400 px-4 py-2 rounded-3xl"
@@ -64,4 +67,6 @@ export default function ItemCard({ item }: ItemCardProps) {
       </div>
     </div>
   );
-}
+};
+
+export default ItemCard;
